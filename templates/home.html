@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>Welcome, {{ username }}!</h1>
+                <p class="lead">You have successfully logged in with email {{ email }}.</p>
+                {% if 'role_admin' in roles %}
+                    <a class="btn btn-danger" href="{{ url_for('admin') }}" role="button">Admin Console</a>
+                {% endif %}
+                <a class="btn btn-info" href="#" role="button" onclick="alert('Edit profile access')">Edit Profile</a>
+                <a href="/logout" class="btn btn-dark">Logout</a>
+            </div>
+
+            <div class="col-md12 text-center">
+                <p>Logged in as: 
+                    {% if 'role_admin' in roles %}
+                        <strong>ADMINISTRATOR</strong>
+                    {% endif %}
+                    {% if 'role_basic' in roles %}
+                        <strong>BASIC USER</strong>
+                    {% endif %}
+                </p>
+
+                <p>Your roles are:</p>
+                <ul class="list-group">
+                    {% for role in roles %}
+                        <li class="list-group-item">{{ role }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (optional, for additional features) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
